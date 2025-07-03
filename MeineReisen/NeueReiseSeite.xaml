@@ -1,38 +1,232 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:sys="clr-namespace:System;assembly=netstandard"
              x:Class="MeineReisen.NeueReiseSeite"
-             Title="Neue Reise">
+             Title="Tour bearbeiten"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="20" Spacing="20">
 
-            <Label Text="Neue Reise anlegen" FontSize="24" HorizontalOptions="Center" />
+            <!-- Header -->
+            <Label x:Name="HeaderLabel" 
+                   Text="🏔️ Neue Tour anlegen" 
+                   FontSize="24" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="{DynamicResource Primary}" />
 
-            <Entry x:Name="NameEntry" Placeholder="Tour-Name" />
+            <!-- Großes Titelbild oben -->
+            <Frame x:Name="TitelbildFrame"
+                   HeightRequest="200" 
+                   CornerRadius="15" 
+                   IsClippedToBounds="True" 
+                   HasShadow="True" 
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   IsVisible="False">
+                <Image x:Name="TitelbildPreview"
+                       Source="{Binding Titelbild}" 
+                       Aspect="AspectFill"/>
+            </Frame>
 
-            
-            <HorizontalStackLayout>
-                <DatePicker IsEnabled="{Binding DatePickerEnabled}" Date="{Binding Datum}" />
-                <HorizontalStackLayout>
-                    <Label Text="In Planung" VerticalOptions="Center" />
-                    <CheckBox IsChecked="{Binding IstGeplant, Mode=TwoWay}" />
-                </HorizontalStackLayout>
+            <!-- Basis Informationen -->
+            <Frame BackgroundColor="{DynamicResource CardBackground}" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="📋 Basis Informationen" 
+                           FontAttributes="Bold" 
+                           FontSize="18"
+                           TextColor="{DynamicResource Primary}"/>
 
-                <HorizontalStackLayout>
-                    <Label Text="Schon erlebt" VerticalOptions="Center" />
-                    <CheckBox IsChecked="{Binding IstAbgeschlossen, Mode=TwoWay}" />
-                </HorizontalStackLayout>
+                    <Entry x:Name="NameEntry" 
+                           Placeholder="Tour-Name" 
+                           Text="{Binding Name, Mode=TwoWay}"/>
 
-            </HorizontalStackLayout>
-            
-            <Entry x:Name="TitelbildEntry" Placeholder="Titelbild Pfad" />
+                    <Entry x:Name="GebietEntry" 
+                           Placeholder="Gebiet/Region" 
+                           Text="{Binding Gebiet, Mode=TwoWay}"/>
 
-            <Button Text="Titelbild auswählen (später implementieren)" IsEnabled="False" />
+                    <Editor x:Name="NotizenEditor" 
+                            Placeholder="Notizen zur Tour..." 
+                            Text="{Binding Notizen, Mode=TwoWay}"
+                            HeightRequest="100"/>
+                </VerticalStackLayout>
+            </Frame>
 
-            <Button Text="Speichern" Clicked="Speichern_Clicked" />
-            
+            <!-- Status und Datum -->
+            <Frame BackgroundColor="{DynamicResource CardBackground}" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="📅 Status und Datum" 
+                           FontAttributes="Bold" 
+                           FontSize="18"
+                           TextColor="{DynamicResource Primary}"/>
+
+                    <Grid ColumnDefinitions="30*,50*,20*" ColumnSpacing="10">
+                        <DatePicker IsEnabled="{Binding IstAufMerkliste}" Grid.Column="0" 
+                                    Date="{Binding DatumMerkliste, Mode=TwoWay}" />
+                        <Label Text="⭐ Merkliste" Grid.Column="1"
+                                   HorizontalTextAlignment="Center" 
+                                VerticalTextAlignment="Center"
+                                   FontSize="14"/>
+                            <CheckBox IsChecked="{Binding IstAufMerkliste, Mode=TwoWay}" Grid.Column="2" 
+                                      HorizontalOptions="Center"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="30*,50*,20*" ColumnSpacing="10">
+                        <DatePicker IsEnabled="{Binding IstGeplant}" Grid.Column="0" 
+                                    Date="{Binding DatumGeplant, Mode=TwoWay}" />    
+                        <Label Text="📅 Geplant   " Grid.Column="1"
+                                   HorizontalTextAlignment="Center" 
+                                VerticalTextAlignment="Center"
+                                   FontSize="14"/>
+                        <CheckBox IsChecked="{Binding IstGeplant, Mode=TwoWay}" Grid.Column="2" 
+                                      HorizontalOptions="Center"/>
+                        
+                    </Grid>
+
+                    <Grid ColumnDefinitions="30*,50*,20*" ColumnSpacing="10">
+                        <DatePicker IsEnabled="{Binding IstAbgeschlossen}" Grid.Column="0" 
+                                    Date="{Binding DatumAbgeschlossen, Mode=TwoWay}" />
+                        <Label Text="✅ Gemacht" Grid.Column="1"
+                                   HorizontalTextAlignment="Center" 
+                                VerticalTextAlignment="Center"
+                                FontSize="14"/>
+                        <CheckBox IsChecked="{Binding IstAbgeschlossen, Mode=TwoWay}" Grid.Column="2" 
+                                      HorizontalOptions="Center"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Tour Details -->
+            <Frame BackgroundColor="{DynamicResource CardBackground}" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="⛰️ Tour Details" 
+                           FontAttributes="Bold" 
+                           FontSize="18"
+                           TextColor="{DynamicResource Primary}"/>
+
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*" ColumnSpacing="10" RowSpacing="10">
+                        <VerticalStackLayout Grid.Column="0" Grid.Row="0">
+                            <Label Text="Schwierigkeit (0-6)" FontSize="14"/>
+                            <Stepper x:Name="SchwierigkeitStepper" 
+                                     Minimum="0" Maximum="6" 
+                                     Value="{Binding Schwierigkeit, Mode=TwoWay}"/>
+                            <Label Text="{Binding Source={x:Reference SchwierigkeitStepper}, Path=Value, StringFormat='Stufe {0:F0}'}" 
+                                   FontSize="12" 
+                                   TextColor="{DynamicResource Gray600}"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Grid.Row="0">
+                            <Label Text="Geschätzte Zeit (h)" FontSize="14"/>
+                            <Entry Placeholder="z.B. 6.5" 
+                                   Text="{Binding EstimatedTime, Mode=TwoWay}" 
+                                   Keyboard="Numeric"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="0" Grid.Row="1">
+                            <Label Text="Höhenmeter ↗️" FontSize="14"/>
+                            <Entry Placeholder="z.B. 1200" 
+                                   Text="{Binding HmHoch, Mode=TwoWay}" 
+                                   Keyboard="Numeric"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Grid.Row="1">
+                            <Label Text="Höhenmeter ↘️" FontSize="14"/>
+                            <Entry Placeholder="z.B. 1200" 
+                                   Text="{Binding HmRunter, Mode=TwoWay}" 
+                                   Keyboard="Numeric"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                            <Label Text="Strecke (km)" FontSize="14"/>
+                            <Entry Placeholder="z.B. 12.5" 
+                                   Text="{Binding StreckeKM, Mode=TwoWay}" 
+                                   Keyboard="Numeric"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Links und Medien -->
+            <Frame BackgroundColor="{DynamicResource CardBackground}" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="🔗 Links und Medien" 
+                           FontAttributes="Bold" 
+                           FontSize="18"
+                           TextColor="{DynamicResource Primary}"/>
+
+                    <Entry x:Name="AlpenvereinEntry" 
+                           Placeholder="AlpenvereinAktiv URL" 
+                           Text="{Binding AlpenvereinAktivURL, Mode=TwoWay}"/>
+
+                    <Entry x:Name="SchlafplatzEntry" 
+                           Placeholder="Schlafplatz vorher (Google Maps Link)" 
+                           Text="{Binding SchlafplatzVorher, Mode=TwoWay}"/>
+
+                    <Entry x:Name="TitelbildEntry" 
+                           Placeholder="Titelbild Pfad/URL" 
+                           Text="{Binding Titelbild, Mode=TwoWay}"/>
+
+                    <!-- Titelbild Vorschau -->
+                    <Frame WidthRequest="100" HeightRequest="100" 
+                           CornerRadius="10" 
+                           IsClippedToBounds="True" 
+                           HasShadow="True" 
+                           Padding="0"
+                           HorizontalOptions="Center">
+                        <!-- IsVisible="{Binding Titelbild, Converter={StaticResource IsNotNullOrEmptyConverter}}" -->
+                        <Image Source="{Binding Titelbild}" 
+                               Aspect="AspectFill"/>
+                    </Frame>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Button Grid.Column="0"
+                                Text="📸 Foto aufnehmen" 
+                                Clicked="FotoAufnehmen_Clicked"
+                                BackgroundColor="{DynamicResource Primary}"
+                                TextColor="White"/>
+                        <Button Grid.Column="1"
+                                Text="🖼️ Aus Galerie" 
+                                Clicked="AusGalerie_Clicked"
+                                BackgroundColor="{DynamicResource PrimaryDarkText}"
+                                TextColor="White"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Action Buttons -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                <Button Grid.Column="01"
+                        Text="💾 Speichern" 
+                        Clicked="Speichern_Clicked"
+                        BackgroundColor="{DynamicResource Success}"
+                        TextColor="White"
+                        FontSize="16"
+                        CornerRadius="25"
+                        HeightRequest="50"/>
+
+                <Button Grid.Column="0"
+                        Text="❌ Abbrechen" 
+                        Clicked="Abbrechen_Clicked"
+                        BackgroundColor="{DynamicResource Danger}"
+                        TextColor="White"
+                        FontSize="16"
+                        CornerRadius="25"
+                        HeightRequest="50"/>
+            </Grid>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

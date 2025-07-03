@@ -1,45 +1,253 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MeineReisen.MainPage"
-             Title="Meine Bergtouren">
+             Title="Meine Bergtouren"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <ScrollView>
-        <VerticalStackLayout Padding="15" Spacing="20">
+        <VerticalStackLayout Padding="15" Spacing="25">
 
-            <Label Text="Merzettel" FontAttributes="Bold" FontSize="18"/>
-            <CollectionView x:Name="MerzettelList"
-                            SelectionMode="Single"
-                            SelectionChanged="OnTourSelected">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding Name}" />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <!-- Header -->
+            <Label Text="🏔️ Meine Bergtouren" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="{DynamicResource Primary}" />
 
-            <Label Text="Geplant" FontAttributes="Bold" FontSize="18"/>
-            <CollectionView x:Name="GeplantList"
-                            SelectionMode="Single"
-                            SelectionChanged="OnTourSelected">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding Name}" />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <!-- Merkliste Sektion -->
+            <Frame BackgroundColor="{DynamicResource CardBackground}" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label x:Name="MerklisteLabel" 
+                           Text="⭐ Merkliste" 
+                           FontAttributes="Bold" 
+                           FontSize="18"
+                           TextColor="{DynamicResource Primary}"/>
 
-            <Label Text="Gemacht" FontAttributes="Bold" FontSize="18"/>
-            <CollectionView x:Name="GemachtList"
-                            SelectionMode="Single"
-                            SelectionChanged="OnTourSelected">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding Name}" />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    <CollectionView x:Name="MerzettelList"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnTourSelected"
+                                    MaximumHeightRequest="200">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10,8" ColumnDefinitions="60,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="5">
+                                    <!-- Titelbild -->
+                                    <Frame Grid.Column="0" Grid.RowSpan="2" 
+                                           WidthRequest="50" HeightRequest="50" 
+                                           CornerRadius="25" 
+                                           IsClippedToBounds="True" 
+                                           HasShadow="False" 
+                                           Padding="0"
+                                           VerticalOptions="Start">
+                                        <Image Source="{Binding Titelbild}" 
+                                               Aspect="AspectFill">
+                                            <Image.Triggers>
+                                                <DataTrigger TargetType="Image" Binding="{Binding Titelbild}" Value="">
+                                                    <Setter Property="Source" Value="🏔️"/>
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
+                                    </Frame>
 
-            <Button Text="Neue Tour hinzufügen" Clicked="OnNeueTourClicked" />
+                                    <Label Grid.Column="1" Grid.Row="0" 
+                                           Text="{Binding Name}" 
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"/>
+                                    <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Spacing="15">
+                                        <Label Text="{Binding Gebiet}" 
+                                               FontSize="13" 
+                                               TextColor="{DynamicResource Gray600}"
+                                               LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding SchwierigkeitText}" 
+                                               FontSize="13" 
+                                               TextColor="{DynamicResource Tertiary}"/>
+                                        <Label Text="{Binding StreckeKM, StringFormat='{0:F1} km'}" 
+                                               FontSize="13" 
+                                               TextColor="{DynamicResource Gray600}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <Label Text="Keine Touren auf der Merkliste" 
+                                   FontAttributes="Italic"
+                                   TextColor="{DynamicResource Gray600}"
+                                   HorizontalOptions="Center"/>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Geplante Touren Sektion -->
+            <Frame BackgroundColor="{DynamicResource CardBackground}" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label x:Name="GeplantLabel" 
+                           Text="📅 Geplant" 
+                           FontAttributes="Bold" 
+                           FontSize="18"
+                           TextColor="{DynamicResource Primary}"/>
+
+                    <CollectionView x:Name="GeplantList"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnTourSelected"
+                                    MaximumHeightRequest="200">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10,8" ColumnDefinitions="60,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="3">
+                                    <!-- Titelbild -->
+                                    <Frame Grid.Column="0" Grid.RowSpan="3" 
+                                           WidthRequest="50" HeightRequest="50" 
+                                           CornerRadius="25" 
+                                           IsClippedToBounds="True" 
+                                           HasShadow="False" 
+                                           Padding="0"
+                                           VerticalOptions="Start">
+                                        <Image Source="{Binding Titelbild}" 
+                                               Aspect="AspectFill">
+                                            <Image.Triggers>
+                                                <DataTrigger TargetType="Image" Binding="{Binding Titelbild}" Value="">
+                                                    <Setter Property="Source" Value="📅"/>
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
+                                    </Frame>
+
+                                    <Label Grid.Column="1" Grid.Row="0" 
+                                           Text="{Binding Name}" 
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"/>
+                                    <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Spacing="15">
+                                        <Label Text="{Binding Gebiet}" 
+                                               FontSize="13" 
+                                               TextColor="{DynamicResource Gray600}"
+                                               LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding SchwierigkeitText}" 
+                                               FontSize="13" 
+                                               TextColor="{DynamicResource Tertiary}"/>
+                                    </StackLayout>
+                                    <Label Grid.Column="1" Grid.Row="2" 
+                                           Text="{Binding Datum, StringFormat='📅 {0:dd.MM.yyyy}'}" 
+                                           FontSize="13" 
+                                           FontAttributes="Bold"
+                                           TextColor="{DynamicResource Secondary}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <Label Text="Keine geplanten Touren" 
+                                   FontAttributes="Italic"
+                                   TextColor="{DynamicResource Gray600}"
+                                   HorizontalOptions="Center"/>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Gemachte Touren Sektion -->
+            <Frame BackgroundColor="{DynamicResource CardBackground}" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label x:Name="GemachtLabel" 
+                           Text="✅ Gemacht" 
+                           FontAttributes="Bold" 
+                           FontSize="18"
+                           TextColor="{DynamicResource Primary}"/>
+
+                    <CollectionView x:Name="GemachtList"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnTourSelected"
+                                    MaximumHeightRequest="300">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10,8" ColumnDefinitions="60,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="3">
+                                    <!-- Titelbild -->
+                                    <Frame Grid.Column="0" Grid.RowSpan="3" 
+                                           WidthRequest="50" HeightRequest="50" 
+                                           CornerRadius="25" 
+                                           IsClippedToBounds="True" 
+                                           HasShadow="False" 
+                                           Padding="0"
+                                           VerticalOptions="Start">
+                                        <Image Source="{Binding Titelbild}" 
+                                               Aspect="AspectFill">
+                                            <Image.Triggers>
+                                                <DataTrigger TargetType="Image" Binding="{Binding Titelbild}" Value="">
+                                                    <Setter Property="Source" Value="✅"/>
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
+                                    </Frame>
+
+                                    <Label Grid.Column="1" Grid.Row="0" 
+                                           Text="{Binding Name}" 
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"/>
+                                    <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Spacing="15">
+                                        <Label Text="{Binding Gebiet}" 
+                                               FontSize="13" 
+                                               TextColor="{DynamicResource Gray600}"
+                                               LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding SchwierigkeitText}" 
+                                               FontSize="13" 
+                                               TextColor="{DynamicResource Tertiary}"/>
+                                        <Label Text="{Binding StreckeKM, StringFormat='{0:F1} km'}" 
+                                               FontSize="13" 
+                                               TextColor="{DynamicResource Gray600}"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Spacing="10">
+                                        <Label Text="{Binding Datum, StringFormat='✅ {0:dd.MM.yyyy}'}" 
+                                               FontSize="13" 
+                                               TextColor="{DynamicResource Success}"/>
+                                        <Label Text="{Binding SterneRating, StringFormat='⭐ {0}/5'}" 
+                                               FontSize="13" 
+                                               TextColor="{DynamicResource Warning}"/>
+                                        <!-- IsVisible="{Binding SterneRating, Converter={StaticResource IsNotZeroConverter}}" -->
+                                    </StackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <Label Text="Noch keine Touren gemacht" 
+                                   FontAttributes="Italic"
+                                   TextColor="{DynamicResource Gray600}"
+                                   HorizontalOptions="Center"/>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Action Buttons -->
+            <VerticalStackLayout Spacing="10">
+                <Button Text="🆕 Neue Tour hinzufügen" 
+                        Clicked="OnNeueTourClicked"
+                        BackgroundColor="{DynamicResource Primary}"
+                        TextColor="White"
+                        FontSize="16"
+                        CornerRadius="25"
+                        HeightRequest="50"/>
+
+                <Button Text="📊 Statistiken anzeigen" 
+                        BackgroundColor="{DynamicResource Secondary}"
+                        TextColor="White"
+                        FontSize="16"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        IsEnabled="False"/>
+            </VerticalStackLayout>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
