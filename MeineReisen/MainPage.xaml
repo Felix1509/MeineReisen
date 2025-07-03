@@ -1,0 +1,45 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MeineReisen.MainPage"
+             Title="Meine Bergtouren">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="20">
+
+            <Label Text="Merzettel" FontAttributes="Bold" FontSize="18"/>
+            <CollectionView x:Name="MerzettelList"
+                            SelectionMode="Single"
+                            SelectionChanged="OnTourSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Geplant" FontAttributes="Bold" FontSize="18"/>
+            <CollectionView x:Name="GeplantList"
+                            SelectionMode="Single"
+                            SelectionChanged="OnTourSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Gemacht" FontAttributes="Bold" FontSize="18"/>
+            <CollectionView x:Name="GemachtList"
+                            SelectionMode="Single"
+                            SelectionChanged="OnTourSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Neue Tour hinzufügen" Clicked="OnNeueTourClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

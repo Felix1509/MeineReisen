@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="MeineReisen.NeueReiseSeite"
+             Title="Neue Reise">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Neue Reise anlegen" FontSize="24" HorizontalOptions="Center" />
+
+            <Entry x:Name="NameEntry" Placeholder="Tour-Name" />
+
+            
+            <HorizontalStackLayout>
+                <DatePicker IsEnabled="{Binding DatePickerEnabled}" Date="{Binding Datum}" />
+                <HorizontalStackLayout>
+                    <Label Text="In Planung" VerticalOptions="Center" />
+                    <CheckBox IsChecked="{Binding IstGeplant, Mode=TwoWay}" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout>
+                    <Label Text="Schon erlebt" VerticalOptions="Center" />
+                    <CheckBox IsChecked="{Binding IstAbgeschlossen, Mode=TwoWay}" />
+                </HorizontalStackLayout>
+
+            </HorizontalStackLayout>
+            
+            <Entry x:Name="TitelbildEntry" Placeholder="Titelbild Pfad" />
+
+            <Button Text="Titelbild auswählen (später implementieren)" IsEnabled="False" />
+
+            <Button Text="Speichern" Clicked="Speichern_Clicked" />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
