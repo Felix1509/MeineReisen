@@ -8,7 +8,6 @@ public partial class NeueReiseSeite : ContentPage
     #region Fields
     private readonly MainPage? _parentPage;
     private readonly NeueReiseVM _viewModel;
-    private readonly int? _tourId;
     #endregion
 
     #region Constructors
@@ -18,6 +17,7 @@ public partial class NeueReiseSeite : ContentPage
         InitializeComponent();
         _viewModel = new NeueReiseVM();
         BindingContext = _viewModel;
+        InitializeSterne();
         HeaderLabel.Text = "🏔️ Neue Tour anlegen";
     }
 
@@ -27,12 +27,13 @@ public partial class NeueReiseSeite : ContentPage
         _parentPage = parentPage;
     }
 
-    // Konstruktor für bearbeiten einer existierenden Tour
+    // Konstruktor für bearbeiten oder kopieren einer existierenden Tour
+     
     public NeueReiseSeite(MainPage parentPage, int tourId) : this(parentPage)
     {
-        _tourId = tourId;
-        HeaderLabel.Text = "🏔️ Tour bearbeiten";
         LoadTourAsync(tourId); // Task nicht awaiten in Konstruktor
+        HeaderLabel.Text = "🏔️ Tour bearbeiten";
+        UpdateSterneAnzeige();
     }
     #endregion
 
@@ -365,9 +366,11 @@ public partial class NeueReiseSeite : ContentPage
             if (i < _viewModel.SterneRating)
             {
                 sterne[i].Text = "★"; // Gefüllter Stern
+                sterne[i].BackgroundColor = Colors.DarkGray;
             }
             else
             {
+                sterne[i].BackgroundColor = Colors.LightGray;
                 sterne[i].Text = "☆"; // Leerer Stern
             }
         }

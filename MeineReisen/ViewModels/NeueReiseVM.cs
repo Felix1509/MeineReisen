@@ -54,7 +54,7 @@ namespace MeineReisen.ViewModels
         public int Schwierigkeit
         {
             get => _schwierigkeit;
-            set { if (_schwierigkeit != value) { _schwierigkeit = value; OnPropertyChanged(); } }
+            set { if (_schwierigkeit != value) { _schwierigkeit = value; OnPropertyChanged(); OnPropertyChanged(nameof(SchwierigkeitText)); } }
         }
 
         public string Notizen
@@ -170,6 +170,26 @@ namespace MeineReisen.ViewModels
         {
             get => _bewertung;
             set { if (value != _bewertung) { _bewertung = value; OnPropertyChanged(); } }
+        }
+        public string SchwierigkeitText
+        {
+            get
+            {
+                var str = Schwierigkeit switch
+                {
+                    0 => "Keine Schwierigkeit",
+                    1 => "Sehr leicht",
+                    2 => "Leicht",
+                    3 => "Mittel",
+                    4 => "Anspruchsvoll",
+                    5 => "Schwer",
+                    6 => "Sehr schwer",
+                    7 => "Extrem",
+                    8 => "Hochalpin",
+                    _ => "Unbekannt"
+                };
+                return "Stufe " + Schwierigkeit + " (" + str + ")";
+            }
         }
     }
 }

@@ -69,6 +69,16 @@ namespace MeineReisen.Models
                 };
             }
         }
+        [Ignore]
+        public string EstimatedTimeString
+        {
+            get
+            {
+                var hours = (int)EstimatedTime;
+                var minutes = (int)((EstimatedTime - hours) * 60);
+                return $"⏱️ {hours}:{minutes:D2}h";
+            }
+        }
 
         public Tour() { }
 

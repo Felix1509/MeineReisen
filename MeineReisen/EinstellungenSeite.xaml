@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MeineReisen.EinstellungenSeite"
+             Title="Einstellungen"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <!-- Header -->
+            <Label Text="⚙️ Einstellungen" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="{DynamicResource Primary}" />
+
+            <!-- Datenbank Management -->
+            <Frame BackgroundColor="{DynamicResource CardBackground}" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="💾 Datenbank-Verwaltung" 
+                           FontAttributes="Bold" 
+                           FontSize="18"
+                           TextColor="{DynamicResource Primary}"/>
+
+                    <Button Text="📤 Datenbank exportieren" 
+                            Clicked="OnExportDatabaseClicked"
+                            BackgroundColor="{DynamicResource Success}"
+                            TextColor="White"
+                            CornerRadius="8"/>
+
+                    <Button Text="📥 Datenbank importieren" 
+                            Clicked="OnImportDatabaseClicked"
+                            BackgroundColor="{DynamicResource Warning}"
+                            TextColor="White"
+                            CornerRadius="8"/>
+
+                    <Label Text="💡 Export: Teile deine Tour-Datenbank mit anderen Geräten oder als Backup" 
+                           FontSize="12"
+                           TextColor="{DynamicResource Gray600}"
+                           FontAttributes="Italic"/>
+
+                    <Label Text="⚠️ Import: Ersetzt deine aktuelle Datenbank komplett!" 
+                           FontSize="12"
+                           TextColor="{DynamicResource Danger}"
+                           FontAttributes="Italic"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- App Information -->
+            <Frame BackgroundColor="{DynamicResource CardBackground}" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="ℹ️ App-Informationen" 
+                           FontAttributes="Bold" 
+                           FontSize="18"
+                           TextColor="{DynamicResource Primary}"/>
+
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" 
+                          ColumnSpacing="15" RowSpacing="8">
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="📱 Version:" FontAttributes="Bold"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="1.0.0" x:Name="VersionLabel"/>
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="🏔️ Touren:" FontAttributes="Bold"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="-" x:Name="TourenAnzahlLabel"/>
+
+                        <Label Grid.Row="2" Grid.Column="0" Text="📸 Fotos:" FontAttributes="Bold"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="-" x:Name="FotosAnzahlLabel"/>
+
+                        <Label Grid.Row="3" Grid.Column="0" Text="💾 DB Größe:" FontAttributes="Bold"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="-" x:Name="DatabaseSizeLabel"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Weitere Einstellungen -->
+            <Frame BackgroundColor="{DynamicResource CardBackground}" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="🔧 Weitere Optionen" 
+                           FontAttributes="Bold" 
+                           FontSize="18"
+                           TextColor="{DynamicResource Primary}"/>
+
+                    <Button Text="🗂️ App-Ordner öffnen" 
+                            Clicked="OnOpenAppFolderClicked"
+                            BackgroundColor="{DynamicResource Secondary}"
+                            TextColor="White"
+                            CornerRadius="8"/>
+
+                    <Button Text="🧹 Cache leeren" 
+                            Clicked="OnClearCacheClicked"
+                            BackgroundColor="{DynamicResource Gray400}"
+                            TextColor="White"
+                            CornerRadius="8"/>
+
+                    <Button Text="🔄 App zurücksetzen" 
+                            Clicked="OnResetAppClicked"
+                            BackgroundColor="{DynamicResource Danger}"
+                            TextColor="White"
+                            CornerRadius="8"/>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

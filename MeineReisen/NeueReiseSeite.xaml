@@ -104,11 +104,10 @@
             </Frame>
 
             <!-- Sterne-Bewertung Container -->
-            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
+            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center" IsVisible="{Binding IstAbgeschlossen}">
                 <Button x:Name="Stern1" 
             Text="☆" 
             FontSize="28"
-            BackgroundColor="LightSlateGray"
             TextColor="Gold"
             BorderWidth="1"
             BorderColor="Gray"
@@ -121,7 +120,6 @@
                 <Button x:Name="Stern2" 
             Text="☆" 
             FontSize="28"
-            BackgroundColor="LightSlateGray"
             TextColor="Gold"
             BorderWidth="1"
             BorderColor="Gray"
@@ -134,7 +132,6 @@
                 <Button x:Name="Stern3" 
             Text="☆" 
             FontSize="28"
-            BackgroundColor="LightSlateGray"
             TextColor="Gold"
             BorderWidth="1"
             BorderColor="Gray"
@@ -147,7 +144,6 @@
                 <Button x:Name="Stern4" 
             Text="☆" 
             FontSize="28"
-            BackgroundColor="LightSlateGray"
             TextColor="Gold"
             BorderWidth="1"
             BorderColor="Gray"
@@ -160,7 +156,6 @@
                 <Button x:Name="Stern5" 
             Text="☆" 
             FontSize="28"
-            BackgroundColor="LightSlateGray"
             TextColor="Gold"
             BorderWidth="1"
             BorderColor="Gray"
@@ -184,11 +179,11 @@
 
                     <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*" ColumnSpacing="10" RowSpacing="10">
                         <VerticalStackLayout Grid.Column="0" Grid.Row="0">
-                            <Label Text="Schwierigkeit (0-6)" FontSize="14"/>
+                            <Label Text="Schwierigkeit (0-8)" FontSize="14"/>
                             <Stepper x:Name="SchwierigkeitStepper" 
-                                     Minimum="0" Maximum="6" 
+                                     Minimum="0" Maximum="8" 
                                      Value="{Binding Schwierigkeit, Mode=TwoWay}"/>
-                            <Label Text="{Binding Source={x:Reference SchwierigkeitStepper}, Path=Value, StringFormat='Stufe {0:F0}'}" 
+                            <Label Text="{Binding SchwierigkeitText, StringFormat='Stufe {0:F0}'}" 
                                    FontSize="12" 
                                    TextColor="{DynamicResource Gray600}"/>
                         </VerticalStackLayout>
@@ -247,17 +242,6 @@
                            Placeholder="Titelbild Pfad/URL" 
                            Text="{Binding Titelbild, Mode=TwoWay}"/>
 
-                    <!-- Titelbild Vorschau -->
-                    <Frame WidthRequest="100" HeightRequest="100" 
-                           CornerRadius="10" 
-                           IsClippedToBounds="True" 
-                           HasShadow="True" 
-                           Padding="0"
-                           HorizontalOptions="Center">
-                        <!-- IsVisible="{Binding Titelbild, Converter={StaticResource IsNotNullOrEmptyConverter}}" -->
-                        <Image Source="{Binding Titelbild}" 
-                               Aspect="AspectFill"/>
-                    </Frame>
 
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                         <Button Grid.Column="0"

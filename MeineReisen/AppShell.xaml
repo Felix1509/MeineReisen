@@ -5,11 +5,49 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MeineReisen"
     Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBackgroundColor="{DynamicResource PageBackgroundColor}"
     Title="MeineReisen">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!-- Flyout Header -->
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="{DynamicResource Primary}" HeightRequest="120" Padding="20">
+            <StackLayout VerticalOptions="Center">
+                <Label Text="🏔️ MeineReisen" 
+                       FontSize="24" 
+                       FontAttributes="Bold" 
+                       TextColor="White"
+                       HorizontalOptions="Start"/>
+                <Label Text="Deine Berg-Abenteuer" 
+                       FontSize="14" 
+                       TextColor="White"
+                       Opacity="0.8"
+                       HorizontalOptions="Start"/>
+            </StackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <!-- Navigation Items -->
+    <FlyoutItem Title="🏔️ Meine Touren" Icon="mountain.png">
+        <ShellContent 
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="⚙️ Einstellungen" Icon="settings.png">
+        <ShellContent 
+            ContentTemplate="{DataTemplate local:EinstellungenSeite}"
+            Route="EinstellungenSeite" />
+    </FlyoutItem>
+
+    <!-- Flyout Footer -->
+    <Shell.FlyoutFooter>
+        <Grid BackgroundColor="{DynamicResource CardBackground}" HeightRequest="60" Padding="15">
+            <Label Text="📱 Version 1.0.0" 
+                   FontSize="12" 
+                   TextColor="{DynamicResource Gray600}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"/>
+        </Grid>
+    </Shell.FlyoutFooter>
 
 </Shell>
