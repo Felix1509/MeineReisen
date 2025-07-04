@@ -346,6 +346,7 @@ public partial class MainPage : ContentPage
                     break;
 
                 case "Als abgeschlossen markieren":
+                    tour.IstAbgeschlossen = true;
                     await App.Datenbank.SaveTourAsync(tour);
                     break;
 

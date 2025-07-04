@@ -35,6 +35,273 @@ namespace MeineReisen.Data
             // DEINE ECHTEN GEMACHTEN TOUREN (aus AlpenvereinAktiv Liste "Habe ich schon gemacht")
             SaveTourAsync(new Tour()
             {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Zugspitze durch das Höllental",
+                Gebiet = "Wettersteingebirge",
+                Schwierigkeit = 5,
+                Notizen = "Geile Tour. Mit Gletscher! Sehr überlaufen. Gipfel voller Seilbahntouristen... Aber es geht ja auch mit der Bahn wieder runter...",
+                IstAbgeschlossen = true,
+                HmHoch = 2200,
+                HmRunter = 180,
+                StreckeKM = 10.1m,
+                EstimatedTime = 7m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/zugspitze-durch-das-hoellental/7325545/",
+                SterneRating = 4
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Alpspitze über die Nordwand-Ferrata",
+                Gebiet = "Wettersteingebirge",
+                Schwierigkeit = 3,
+                Notizen = "Schöner, etwas überlaufener, Anfängerklettersteig. Hoch und runter mit Alpspitzbahn. Zu Fuß möglich",
+                IstAbgeschlossen = true,
+                HmHoch = 650,
+                HmRunter = 650,
+                StreckeKM = 4.4m,
+                EstimatedTime = 4.15m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/klettersteig-auf-die-alpspitze-ueber-die-nordwand-ferrata-im/804958383/",
+                SterneRating = 4
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Bastei auf schmalen Pfaden",
+                Gebiet = "Sächsische Schweiz",
+                Schwierigkeit = 1,
+                Notizen = "Auf schmalen Bergsteigerpfaden, teils ausgesetzt und mit kurzen Klettereinlagen",
+                IstAbgeschlossen = true,
+                HmHoch = 636,
+                HmRunter = 636,
+                StreckeKM = 13.4m,
+                EstimatedTime = 5.45m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/bastei-auf-schmalen-pfaden/223485960/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Häntzschelstiege Abstieg über die Wilde Hölle",
+                Gebiet = "Sächsische Schweiz",
+                Schwierigkeit = 1,
+                Notizen = "Schöner kurzer Klettersteig",
+                IstAbgeschlossen = true,
+                HmHoch = 453,
+                HmRunter = 453,
+                StreckeKM = 7.1m,
+                EstimatedTime = 3.56m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/haentzschelstiege-abstieg-ueber-die-wilde-hoelle/109954108/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Abenteuerliche Stiegentour an der Südflanke des sächsischen Elbsandsteinmassivs",
+                Gebiet = "Sächsische Schweiz",
+                Schwierigkeit = 3,
+                Notizen = "Teilweise freie Kletterei. Auch noch um andere Stiegen erweiterbar.",
+                IstAbgeschlossen = true,
+                HmHoch = 631,
+                HmRunter = 631,
+                StreckeKM = 8.5m,
+                EstimatedTime = 4.3m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/abenteuerliche-stiegentour-an-der-suedflanke-des-saechsischen/121376002/",
+                SterneRating = 4
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Königsee Klettersteig Runde über den Grünstein und Rinnkendelsteig nach St. Bartholomä",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 4,
+                Notizen = "",
+                IstAbgeschlossen = true,
+                HmHoch = 1051,
+                HmRunter = 1051,
+                StreckeKM = 11.5m,
+                EstimatedTime = 7.3m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/koenigsee-klettersteig-runde-ueber-den-gruenstein-und-rinnkendelsteig-nach/120688472/",
+                SterneRating = 4
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Wanderung über den Tegelberg zum Märchenschloss Neuschwanstein",
+                Gebiet = "Allgäu (Füssen)",
+                Schwierigkeit = 1,
+                Notizen = "Ausversehen noch um Säuling erweitert. Schöne Runde, alles leicht",
+                IstAbgeschlossen = true,
+                HmHoch = 975,
+                HmRunter = 976,
+                StreckeKM = 16m,
+                EstimatedTime = 6m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/wanderung-ueber-den-tegelberg-zum-maerchenschloss-neuschwanstein/1398899/#caml=7t4,1stnnn,7v8b1l,0,0",
+                SterneRating = 2
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "3-Schlösser-Runde",
+                Gebiet = "Allgäu (Füssen)",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+            SaveTourAsync(new Tour()
+            {
+                Name = "Toter Mann und Soleleitung",
+                Gebiet = "Berchtesgadener Land",
+                Schwierigkeit = 0,
+                Notizen = "Einfacher 'Spaziergang'. Gemacht im Winter. Schöner Rodelberg! Schöne Aussicht auf BGL und SBL",
+                IstAbgeschlossen = true,
+                HmHoch = 493,
+                HmRunter = 493,
+                StreckeKM = 11.5m,
+                EstimatedTime = 4.1m,
+                AlpenvereinAktivURL = "https://www.alpenvereinaktiv.com/de/tour/toter-mann-und-soleleitung/120009238/",
+                SterneRating = 3
+            });
+
+            SaveTourAsync(new Tour()
+            {
                 Name = "Klettersteig auf die Alpspitze über die Nordwand-Ferrata",
                 Gebiet = "Wettersteingebirge",
                 Schwierigkeit = 3,

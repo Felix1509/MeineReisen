@@ -103,6 +103,74 @@
                 </VerticalStackLayout>
             </Frame>
 
+            <!-- Sterne-Bewertung Container -->
+            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
+                <Button x:Name="Stern1" 
+            Text="☆" 
+            FontSize="28"
+            BackgroundColor="LightSlateGray"
+            TextColor="Gold"
+            BorderWidth="1"
+            BorderColor="Gray"
+            CornerRadius="5"
+            WidthRequest="50"
+            HeightRequest="50"
+            Clicked="OnSternClicked"
+            CommandParameter="1" />
+
+                <Button x:Name="Stern2" 
+            Text="☆" 
+            FontSize="28"
+            BackgroundColor="LightSlateGray"
+            TextColor="Gold"
+            BorderWidth="1"
+            BorderColor="Gray"
+            CornerRadius="5"
+            WidthRequest="50"
+            HeightRequest="50"
+            Clicked="OnSternClicked"
+            CommandParameter="2" />
+
+                <Button x:Name="Stern3" 
+            Text="☆" 
+            FontSize="28"
+            BackgroundColor="LightSlateGray"
+            TextColor="Gold"
+            BorderWidth="1"
+            BorderColor="Gray"
+            CornerRadius="5"
+            WidthRequest="50"
+            HeightRequest="50"
+            Clicked="OnSternClicked"
+            CommandParameter="3" />
+
+                <Button x:Name="Stern4" 
+            Text="☆" 
+            FontSize="28"
+            BackgroundColor="LightSlateGray"
+            TextColor="Gold"
+            BorderWidth="1"
+            BorderColor="Gray"
+            CornerRadius="5"
+            WidthRequest="50"
+            HeightRequest="50"
+            Clicked="OnSternClicked"
+            CommandParameter="4" />
+
+                <Button x:Name="Stern5" 
+            Text="☆" 
+            FontSize="28"
+            BackgroundColor="LightSlateGray"
+            TextColor="Gold"
+            BorderWidth="1"
+            BorderColor="Gray"
+            CornerRadius="5"
+            WidthRequest="50"
+            HeightRequest="50"
+            Clicked="OnSternClicked"
+            CommandParameter="5" />
+            </StackLayout>
+
             <!-- Tour Details -->
             <Frame BackgroundColor="{DynamicResource CardBackground}" 
                    HasShadow="True" 

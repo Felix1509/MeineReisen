@@ -340,4 +340,43 @@ public partial class NeueReiseSeite : ContentPage
         }
     }
     #endregion
+
+    // Backend Code für die Sterne-Bewertung
+    #region Sterne-Bewertung
+
+    private void OnSternClicked(object sender, EventArgs e)
+    {
+        if (sender is Button button && button.CommandParameter is string parameterString)
+        {
+            if (int.TryParse(parameterString, out int sternNummer))
+            {
+                _viewModel.SterneRating = sternNummer;
+                UpdateSterneAnzeige();
+            }
+        }
+    }
+
+    private void UpdateSterneAnzeige()
+    {
+        var sterne = new[] { Stern1, Stern2, Stern3, Stern4, Stern5 };
+
+        for (int i = 0; i < sterne.Length; i++)
+        {
+            if (i < _viewModel.SterneRating)
+            {
+                sterne[i].Text = "★"; // Gefüllter Stern
+            }
+            else
+            {
+                sterne[i].Text = "☆"; // Leerer Stern
+            }
+        }
+    }
+
+    // Optional: Initialisierung aufrufen (z.B. in OnAppearing oder Konstruktor)
+    private void InitializeSterne()
+    {
+        UpdateSterneAnzeige();
+    }
+    #endregion
 }

@@ -56,13 +56,15 @@ namespace MeineReisen.Models
             {
                 return Schwierigkeit switch
                 {
-                    0 => "Einfach",
-                    1 => "Leicht",
-                    2 => "Mittel",
-                    3 => "Schwer",
-                    4 => "Sehr schwer",
-                    5 => "Extrem",
-                    6 => "Hochalpin",
+                    0 => "Keine Schwierigkeit",
+                    1 => "Sehr leicht",
+                    2 => "Leicht",
+                    3 => "Mittel",
+                    4 => "Anspruchsvoll",
+                    5 => "Schwer",
+                    6 => "Sehr schwer",
+                    7 => "Extrem",
+                    8 => "Hochalpin",
                     _ => "Unbekannt"
                 };
             }
