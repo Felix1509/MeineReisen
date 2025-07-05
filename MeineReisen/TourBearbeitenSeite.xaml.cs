@@ -3,7 +3,7 @@ using MeineReisen.ViewModels;
 
 namespace MeineReisen;
 
-public partial class NeueReiseSeite : ContentPage
+public partial class TourBearbeitenSeite : ContentPage
 {
     #region Fields
     private readonly MainPage? _parentPage;
@@ -12,7 +12,7 @@ public partial class NeueReiseSeite : ContentPage
 
     #region Constructors
     // Parameterloser Konstruktor für Shell Navigation
-    public NeueReiseSeite()
+    public TourBearbeitenSeite()
     {
         InitializeComponent();
         _viewModel = new NeueReiseVM();
@@ -22,14 +22,14 @@ public partial class NeueReiseSeite : ContentPage
     }
 
     // Konstruktor für neue Tour
-    public NeueReiseSeite(MainPage parentPage) : this()
+    public TourBearbeitenSeite(MainPage parentPage) : this()
     {
         _parentPage = parentPage;
     }
 
     // Konstruktor für bearbeiten oder kopieren einer existierenden Tour
      
-    public NeueReiseSeite(MainPage parentPage, int tourId) : this(parentPage)
+    public TourBearbeitenSeite(MainPage parentPage, int tourId) : this(parentPage)
     {
         LoadTourAsync(tourId); // Task nicht awaiten in Konstruktor
         HeaderLabel.Text = "🏔️ Tour bearbeiten";

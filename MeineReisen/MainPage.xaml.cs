@@ -302,7 +302,7 @@ public partial class MainPage : ContentPage
 
     private async void OnNeueTourClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new NeueReiseSeite(this));
+        await Navigation.PushAsync(new TourBearbeitenSeite(this));
     }
 
     private async void OnTourSelected(object sender, SelectionChangedEventArgs e)
@@ -376,12 +376,12 @@ public partial class MainPage : ContentPage
                     break;
 
                 case "✏️ Bearbeiten":
-                    await Navigation.PushAsync(new NeueReiseSeite(this, tour.Id));
+                    await Navigation.PushAsync(new TourBearbeitenSeite(this, tour.Id));
                     break;
 
                 case "📋 Kopieren":
                     var newTour = await CopyTour(tour);
-                    await Navigation.PushAsync(new NeueReiseSeite(this, newTour.Id));
+                    await Navigation.PushAsync(new TourBearbeitenSeite(this, newTour.Id));
                     break;
 
                 case "🛏️ Schlafplatz öffnen":
